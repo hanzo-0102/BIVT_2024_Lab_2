@@ -227,7 +227,7 @@ public class Program
         {
             double x;
             double.TryParse(Console.ReadLine(), out x);
-            if (x >= norm) answer++;
+            if (x <= norm) answer++;
         }
 
         return answer;
@@ -274,7 +274,7 @@ public class Program
             double x, y;
             double.TryParse(Console.ReadLine(), out x);
             double.TryParse(Console.ReadLine(), out y);
-            if (Math.Sqrt((x * x) + (y * y)) < answerLength) answerLength = Math.Sqrt((x * x) + (y * y)); answer = i + 1;
+            if (Math.Sqrt((x * x) + (y * y)) < answerLength) { answerLength = Math.Sqrt((x * x) + (y * y)); answer = i + 1; }
         }
 
         return (answer, answerLength);
@@ -317,12 +317,12 @@ public class Program
 
         for (int i = 0; i < n; i++)
         {
-            bool IsGood = true;
+            bool IsGood = false;
             for (int j = 0; j < 4; j++)
             {
                 double mark;
                 double.TryParse((Console.ReadLine()), out mark);
-                if (mark >= 3) IsGood = false;
+                if (mark >= 3) IsGood = true;
                 avg += mark;
             }
             if (!IsGood) answer++;
@@ -336,9 +336,18 @@ public class Program
 
         if (type < 0 || type > 2 || r <= 0) return 0;
 
-        if (type == 0) answer = r * r;
-        else if (type == 1) answer = Math.PI * (r * r);
-        else if (type == 2) answer = (r * r) * Math.Sqrt(3) / 4;
+        switch (type)
+        {
+            case 0:
+                answer = r * r;
+                break;
+            case 1:
+                answer = Math.PI * (r * r);
+                break;
+            case 2:
+                answer = (r * r) * Math.Sqrt(3) / 4;
+                break;
+        }
 
         return Math.Round(answer, 2);
     }
@@ -348,9 +357,18 @@ public class Program
 
         if (type < 0 || type > 2 || A <= 0 || B <= 0) return 0;
 
-        if (type == 0) answer = (A * B);
-        else if (type == 1) answer = Math.Abs((Math.PI * (A * A)) - (Math.PI * (B * B)));
-        else if (type == 2) { P = (A + B + B) / 2; answer = Math.Sqrt(P * (P - A) * (P - B) * (P - B)); }
+        switch (type) {
+            case 0:
+                answer = (A * B);
+                break;
+            case 1:
+                answer = Math.Abs((Math.PI * (A * A)) - (Math.PI * (B * B)));
+                break;
+            case 2:
+                P = (A + B + B) / 2; 
+                answer = Math.Sqrt(P * (P - A) * (P - B) * (P - B));
+                break;
+        }
 
         return Math.Round(answer, 2);
     }
