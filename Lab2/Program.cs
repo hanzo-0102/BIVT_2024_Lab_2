@@ -317,12 +317,12 @@ public class Program
 
         for (int i = 0; i < n; i++)
         {
-            bool IsGood = false;
+            bool IsGood = true;
             for (int j = 0; j < 4; j++)
             {
                 double mark;
                 double.TryParse((Console.ReadLine()), out mark);
-                if (mark >= 3) IsGood = true;
+                if (mark < 3) IsGood = false;
                 avg += mark;
             }
             if (!IsGood) answer++;
